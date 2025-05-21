@@ -1,975 +1,297 @@
 <!DOCTYPE html>
-<html lang="en-IN">
-	<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="utf-8" />
-		<title>
-		</title>
-		<style>
-			body { line-height:108%; font-family:Calibri; font-size:11pt }
-			h1, h2, h3, h4, h5, h6, p { margin:0pt 0pt 8pt }
-			h1 { margin-top:18pt; margin-bottom:4pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-family:'Calibri Light'; font-size:20pt; font-weight:normal; color:#2f5496 }
-			h2 { margin-top:8pt; margin-bottom:4pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-family:'Calibri Light'; font-size:16pt; font-weight:normal; color:#2f5496 }
-			h3 { margin-top:8pt; margin-bottom:4pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-family:Calibri; font-size:14pt; font-weight:normal; color:#2f5496 }
-			h4 { margin-top:4pt; margin-bottom:2pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-family:Calibri; font-size:11pt; font-weight:normal; font-style:italic; color:#2f5496 }
-			h5 { margin-top:4pt; margin-bottom:2pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-family:Calibri; font-size:11pt; font-weight:normal; color:#2f5496 }
-			h6 { margin-top:2pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-family:Calibri; font-size:11pt; font-weight:normal; font-style:italic; color:#595959 }
-			.Heading7 { margin-top:2pt; margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-size:11pt; font-weight:normal; color:#595959 }
-			.Heading8 { margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-size:11pt; font-weight:normal; font-style:italic; color:#272727 }
-			.Heading9 { margin-bottom:0pt; page-break-inside:avoid; page-break-after:avoid; line-height:108%; font-size:11pt; font-weight:normal; color:#272727 }
-			.IntenseQuote { margin:18pt 43.2pt; text-align:center; line-height:108%; border-top:0.75pt solid #2f5496; border-bottom:0.75pt solid #2f5496; padding-top:10pt; padding-bottom:10pt; font-size:11pt; font-style:italic; color:#2f5496 }
-			.ListParagraph { margin-left:36pt; margin-bottom:8pt; line-height:108%; font-size:11pt }
-			.Quote { margin-top:8pt; margin-bottom:8pt; text-align:center; line-height:108%; font-size:11pt; font-style:italic; color:#404040 }
-			.Subtitle { margin-bottom:8pt; line-height:108%; font-size:14pt; letter-spacing:0.75pt; color:#595959 }
-			.Title { margin-bottom:4pt; line-height:normal; font-family:'Calibri Light'; font-size:28pt; letter-spacing:-0.5pt }
-			span.Heading1Char { font-family:'Calibri Light'; font-size:20pt; color:#2f5496 }
-			span.Heading2Char { font-family:'Calibri Light'; font-size:16pt; color:#2f5496 }
-			span.Heading3Char { font-size:14pt; color:#2f5496 }
-			span.Heading4Char { font-style:italic; color:#2f5496 }
-			span.Heading5Char { color:#2f5496 }
-			span.Heading6Char { font-style:italic; color:#595959 }
-			span.Heading7Char { color:#595959 }
-			span.Heading8Char { font-style:italic; color:#272727 }
-			span.Heading9Char { color:#272727 }
-			span.IntenseEmphasis { font-style:italic; color:#2f5496 }
-			span.IntenseQuoteChar { font-style:italic; color:#2f5496 }
-			span.IntenseReference { font-weight:bold; font-variant:small-caps; letter-spacing:0.25pt; color:#2f5496 }
-			span.QuoteChar { font-style:italic; color:#404040 }
-			span.SubtitleChar { font-size:14pt; letter-spacing:0.75pt; color:#595959 }
-			span.TitleChar { font-family:'Calibri Light'; font-size:28pt; letter-spacing:-0.5pt }
-@media (max-width: 900px) { 
-img { 
-   max-width: 100%;
-   height: auto;
-}
+<html>
+<head>
+  <title>Ujjwala Sakhi Dashboard</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Segoe UI', sans-serif;
+      color: #5a5a5a;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      background-color: #284181;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 3rem;
+      margin: 0;
+    }
+    .kpi-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 30px 0;
+      width: 90%;
+      margin: auto;
+    }
+    .kpi-tile {
+      flex: 1 1 200px;
+      max-width: 250px;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      color: white;
+    }
+    .kpi-tile h2 {
+      margin: 10px 0 5px;
+      font-size: 2.2rem;
+      font-weight: bold;
+    }
+    .kpi-tile p {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .kpi-blue { background-color: #284181; }
+    .kpi-light { background-color: #00bfdf; }
+    .kpi-orange { background-color: #f79433; }
+    .kpi-dark { background-color: #5a5a5a; }
 
-.table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
+    .filters, #chart_div, #fy_chart_div, #sakhi_chart_div, #table_div {
+      background: white;
+      width: 90%;
+      margin: 20px auto;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+    .filters {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
 
-td, th {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-}	
+    .filters select {
+      padding: 10px;
+      font-size: 1rem;
+    }
 
+    .googleHeaderRow {
+      background-color: #284181;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+    }
 
-		</style>
-	</head>
-	<body>
-			<p style="text-align:justify">
-				&lt;!DOCTYPE html&gt;
-			</p>
-			<p style="text-align:justify">
-				&lt;html&gt;
-			</p>
-			<p style="text-align:justify">
-				&lt;head&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;title&gt;Ujjwala Sakhi Dashboard&lt;/title&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"&gt;&lt;/script&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;style&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; body {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; background-color: #f7f7f7;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-family: 'Segoe UI', sans-serif;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; color: #5a5a5a;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; margin: 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; padding: 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; h1 {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; background-color: #284181;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; color: white;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; text-align: center;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; padding: 20px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-size: 3rem;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; margin: 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-container {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; display: flex;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; flex-wrap: wrap;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; gap: 20px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; justify-content: center;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; padding: 30px 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; width: 90%;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; margin: auto;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-tile {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; flex: 1 1 200px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; max-width: 250px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; border-radius: 12px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; padding: 20px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; text-align: center;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; color: white;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-tile h2 {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; margin: 10px 0 5px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-size: 2.2rem;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-weight: bold;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-tile p {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; margin: 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-size: 1rem;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-weight: 500;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-blue { background-color: #284181; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-light { background-color: #00bfdf; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-orange { background-color: #f79433; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .kpi-dark { background-color: #5a5a5a; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .filters, #chart_div, #fy_chart_div, #sakhi_chart_div, #table_div {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; background: white;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; width: 90%;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; margin: 20px auto;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; padding: 30px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; border-radius: 8px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .filters {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; display: flex;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; gap: 20px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; align-items: center;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .filters select {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; padding: 10px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-size: 1rem;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .googleHeaderRow {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; background-color: #284181;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; color: white;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-weight: bold;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-size: 1rem;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .googleTableRow, .googleOddTableRow {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; background-color: #ffffff;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; color: #5a5a5a;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; .googleTableCell, .googleHeaderCell {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; font-size: 0.95rem;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; padding: 10px;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;/style&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;script type="text/javascript"&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; google.charts.load('current', { packages: ['corechart', 'table'] });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; google.charts.setOnLoadCallback(drawDashboard);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; let rawData;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function drawDashboard() {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const query = new google.visualization.Query(
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; 'https://docs.google.com/spreadsheets/d/1Pj02Ddpt_7MxRSt184uisWO-fhipiPtViskl7lEaoeM/gviz/tq?sheet=Master%20Sheet'
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; );
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; query.send(response =&gt; {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (response.isError()) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; alert('Error: ' + response.getMessage());
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; return;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; rawData = response.getDataTable();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; populateFilters(rawData);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; updateVisuals();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function populateFilters(data) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const districtSet = new Set();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let i = 0; i &lt; data.getNumberOfRows(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; districtSet.add(data.getValue(i, 0));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const districtDropdown = document.getElementById('districtFilter');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; districtDropdown.innerHTML = '&lt;option value=""&gt;All Districts&lt;/option&gt;';
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; [...districtSet].sort().forEach(dist =&gt; {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; districtDropdown.innerHTML += `&lt;option value="${dist}"&gt;${dist}&lt;/option&gt;`;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; districtDropdown.addEventListener('change', () =&gt; {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; populateBlockFilter(data, districtDropdown.value);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; updateVisuals();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const blockDropdown = document.getElementById('blockFilter');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; blockDropdown.addEventListener('change', updateVisuals);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; populateBlockFilter(data, '');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function populateBlockFilter(data, selectedDistrict) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const blockSet = new Set();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let i = 0; i &lt; data.getNumberOfRows(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const dist = data.getValue(i, 0);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const block = data.getValue(i, 2);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (!selectedDistrict || dist === selectedDistrict) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; blockSet.add(block);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const blockDropdown = document.getElementById('blockFilter');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; blockDropdown.innerHTML = '&lt;option value=""&gt;All Blocks&lt;/option&gt;';
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; [...blockSet].sort().forEach(block =&gt; {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; blockDropdown.innerHTML += `&lt;option value="${block}"&gt;${block}&lt;/option&gt;`;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function updateVisuals() {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const district = document.getElementById('districtFilter').value;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const block = document.getElementById('blockFilter').value;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const filtered = new google.visualization.DataTable();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let i = 0; i &lt; rawData.getNumberOfColumns(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; filtered.addColumn(rawData.getColumnType(i), rawData.getColumnLabel(i));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let i = 0; i &lt; rawData.getNumberOfRows(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const row = [];
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const matchDistrict = !district || rawData.getValue(i, 0) === district;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const matchBlock = !block || rawData.getValue(i, 2) === block;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (matchDistrict &amp;&amp; matchBlock) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let j = 0; j &lt; rawData.getNumberOfColumns(); j++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; row.push(rawData.getValue(i, j));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; filtered.addRow(row);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; drawKPIs(filtered);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; drawMonthlyChart(filtered);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; drawFYDistrictChart(filtered);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; drawTopSakhisChart(filtered);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; drawTable(filtered);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function drawKPIs(data) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0; const totalSakhis = data.getNumberOfRows();
-			</p>
-			<p style="text-align:justify">
-				&#xa0; const villages = new Set();
-			</p>
-			<p style="text-align:justify">
-				&#xa0; const districts = new Set();
-			</p>
-			<p style="text-align:justify">
-				&#xa0; let totalRefills = 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; let cumulativeRefills = 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; const fyStart = 17, fyEnd = 29;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; const monthStart = 9; // Jul'23 index
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; for (let i = 0; i &lt; data.getNumberOfRows(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; villages.add(data.getValue(i, 4));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; districts.add(data.getValue(i, 0));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; // FY 2024–25 total
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; for (let j = fyStart; j &lt; fyEnd; j++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const val = data.getValue(i, j);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (!isNaN(val)) totalRefills += val;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; // Cumulative total (all months from Jul'23 onward)
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; for (let j = monthStart; j &lt; data.getNumberOfColumns(); j++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const val = data.getValue(i, j);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (!isNaN(val)) cumulativeRefills += val;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; document.getElementById('kpiTiles').innerHTML = `
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;div class="kpi-tile kpi-blue"&gt;&lt;h2&gt;${totalSakhis}&lt;/h2&gt;&lt;p&gt;Total Ujjwala Sakhis&lt;/p&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;div class="kpi-tile kpi-light"&gt;&lt;h2&gt;${villages.size}&lt;/h2&gt;&lt;p&gt;Total Villages&lt;/p&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;div class="kpi-tile kpi-dark"&gt;&lt;h2&gt;${districts.size}&lt;/h2&gt;&lt;p&gt;Total Districts&lt;/p&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;div class="kpi-tile kpi-orange"&gt;&lt;h2&gt;${totalRefills}&lt;/h2&gt;&lt;p&gt;Total Refills in FY 2024–25&lt;/p&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;div class="kpi-tile kpi-light"&gt;&lt;h2&gt;${cumulativeRefills}&lt;/h2&gt;&lt;p&gt;Cumulative Refills Till Now&lt;/p&gt;&lt;/div&gt;`;
-			</p>
-			<p style="text-align:justify">
-				}
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function drawMonthlyChart(data) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const monthly = new google.visualization.DataTable();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; monthly.addColumn('string', 'Month');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; monthly.addColumn('number', 'Refills');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let i = 9; i &lt; data.getNumberOfColumns(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; let sum = 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let j = 0; j &lt; data.getNumberOfRows(); j++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const val = data.getValue(j, i);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (!isNaN(val)) sum += val;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (sum &gt; 0) monthly.addRow([data.getColumnLabel(i), sum]);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; chart.draw(monthly, { title: 'Monthly Refill Trends', colors: ['#00bfdf'], legend: 'none' });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function drawFYDistrictChart(data) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const fyStart = 17, fyEnd = 29;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const districtMap = {};
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let i = 0; i &lt; data.getNumberOfRows(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const dist = data.getValue(i, 0);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; let sum = 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let j = fyStart; j &lt; fyEnd; j++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const val = data.getValue(i, j);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (!isNaN(val)) sum += val;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; districtMap[dist] = (districtMap[dist] || 0) + sum;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const chartData = new google.visualization.DataTable();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; chartData.addColumn('string', 'District');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; chartData.addColumn('number', 'FY Refills');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; Object.entries(districtMap).sort((a,b)=&gt;b[1]-a[1]).slice(0,5).forEach(d =&gt; chartData.addRow([d[0], d[1]]));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const chart = new google.visualization.ColumnChart(document.getElementById('fy_chart_div'));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; chart.draw(chartData, { title: 'Top Performing Districts (FY 2024–25)', colors: ['#f79433'], legend: 'none' });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function drawTopSakhisChart(data) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const fyStart = 17, fyEnd = 29;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const sakhiMap = {};
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let i = 0; i &lt; data.getNumberOfRows(); i++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const name = data.getValue(i, 1);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; let sum = 0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; for (let j = fyStart; j &lt; fyEnd; j++) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const val = data.getValue(i, j);
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; if (!isNaN(val)) sum += val;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; sakhiMap[name] = (sakhiMap[name] || 0) + sum;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const chartData = new google.visualization.DataTable();
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; chartData.addColumn('string', 'Sakhi');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; chartData.addColumn('number', 'FY Refills');
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; Object.entries(sakhiMap).sort((a,b)=&gt;b[1]-a[1]).slice(0,5).forEach(s =&gt; chartData.addRow([s[0], s[1]]));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; const chart = new google.visualization.ColumnChart(document.getElementById('sakhi_chart_div'));
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; chart.draw(chartData, { title: 'Top Performing Ujjwala Sakhis (FY 2024–25)', colors: ['#f79433'], legend: 'none' });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; function drawTable(data) {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; new google.visualization.Table(document.getElementById('table_div')).draw(data, {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; showRowNumber: false,
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; width: '100%',
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; height: 'auto',
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; cssClassNames: {
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; headerRow: 'googleHeaderRow',
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; tableRow: 'googleTableRow',
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; oddTableRow: 'googleOddTableRow',
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; headerCell: 'googleHeaderCell',
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; tableCell: 'googleTableCell'
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; });
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; }
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;/script&gt;
-			</p>
-			<p style="text-align:justify">
-				&lt;/head&gt;
-			</p>
-			<p style="text-align:justify">
-				&lt;body&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;h1&gt;Ujjwala Sakhi Dashboard&lt;/h1&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;div class="kpi-container" id="kpiTiles"&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;div class="filters"&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;label for="districtFilter"&gt;District:&lt;/label&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;select id="districtFilter"&gt;&lt;/select&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;label for="blockFilter"&gt;Block:&lt;/label&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;&#xa0;&#xa0; &lt;select id="blockFilter"&gt;&lt;/select&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;div id="chart_div"&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;div id="fy_chart_div"&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;div id="sakhi_chart_div"&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0; &lt;div id="table_div"&gt;&lt;/div&gt;
-			</p>
-			<p style="text-align:justify">
-				&lt;/body&gt;
-			</p>
-			<p style="text-align:justify">
-				&lt;/html&gt;
-			</p>
-			<p style="text-align:justify">
-				&#xa0;
-			</p>
-	<p style="bottom: 10px; right: 10px; position: absolute;"><a href="https://wordtohtml.net" target="_blank" style="font-size:11px; color: #d0d0d0">Converted to HTML with WordToHTML.net</a></p>
+    .googleTableRow, .googleOddTableRow {
+      background-color: #ffffff;
+      color: #5a5a5a;
+    }
+
+    .googleTableCell, .googleHeaderCell {
+      font-size: 0.95rem;
+      padding: 10px;
+    }
+  </style>
+  <script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart', 'table'] });
+    google.charts.setOnLoadCallback(drawDashboard);
+
+    let rawData;
+
+    function drawDashboard() {
+      const query = new google.visualization.Query(
+        'https://docs.google.com/spreadsheets/d/1Pj02Ddpt_7MxRSt184uisWO-fhipiPtViskl7lEaoeM/gviz/tq?sheet=Master%20Sheet'
+      );
+      query.send(response => {
+        if (response.isError()) {
+          alert('Error: ' + response.getMessage());
+          return;
+        }
+        rawData = response.getDataTable();
+        populateFilters(rawData);
+        updateVisuals();
+      });
+    }
+
+    function populateFilters(data) {
+      const districtSet = new Set();
+      for (let i = 0; i < data.getNumberOfRows(); i++) {
+        districtSet.add(data.getValue(i, 0));
+      }
+
+      const districtDropdown = document.getElementById('districtFilter');
+      districtDropdown.innerHTML = '<option value="">All Districts</option>';
+      [...districtSet].sort().forEach(dist => {
+        districtDropdown.innerHTML += `<option value="${dist}">${dist}</option>`;
+      });
+
+      districtDropdown.addEventListener('change', () => {
+        populateBlockFilter(data, districtDropdown.value);
+        updateVisuals();
+      });
+
+      const blockDropdown = document.getElementById('blockFilter');
+      blockDropdown.addEventListener('change', updateVisuals);
+
+      populateBlockFilter(data, '');
+    }
+
+    function populateBlockFilter(data, selectedDistrict) {
+      const blockSet = new Set();
+      for (let i = 0; i < data.getNumberOfRows(); i++) {
+        const dist = data.getValue(i, 0);
+        const block = data.getValue(i, 2);
+        if (!selectedDistrict || dist === selectedDistrict) {
+          blockSet.add(block);
+        }
+      }
+
+      const blockDropdown = document.getElementById('blockFilter');
+      blockDropdown.innerHTML = '<option value="">All Blocks</option>';
+      [...blockSet].sort().forEach(block => {
+        blockDropdown.innerHTML += `<option value="${block}">${block}</option>`;
+      });
+    }
+
+    function updateVisuals() {
+      const district = document.getElementById('districtFilter').value;
+      const block = document.getElementById('blockFilter').value;
+
+      const filtered = new google.visualization.DataTable();
+      for (let i = 0; i < rawData.getNumberOfColumns(); i++) {
+        filtered.addColumn(rawData.getColumnType(i), rawData.getColumnLabel(i));
+      }
+
+      for (let i = 0; i < rawData.getNumberOfRows(); i++) {
+        const row = [];
+        const matchDistrict = !district || rawData.getValue(i, 0) === district;
+        const matchBlock = !block || rawData.getValue(i, 2) === block;
+        if (matchDistrict && matchBlock) {
+          for (let j = 0; j < rawData.getNumberOfColumns(); j++) {
+            row.push(rawData.getValue(i, j));
+          }
+          filtered.addRow(row);
+        }
+      }
+
+      drawKPIs(filtered);
+      drawMonthlyChart(filtered);
+      drawFYDistrictChart(filtered);
+      drawTopSakhisChart(filtered);
+      drawTable(filtered);
+    }
+
+    function drawKPIs(data) {
+      const totalSakhis = data.getNumberOfRows();
+      const villages = new Set();
+      const districts = new Set();
+      let totalRefills = 0;
+      let cumulativeRefills = 0;
+      const fyStart = 17, fyEnd = 29;
+      const monthStart = 9;
+
+      for (let i = 0; i < data.getNumberOfRows(); i++) {
+        villages.add(data.getValue(i, 4));
+        districts.add(data.getValue(i, 0));
+        for (let j = fyStart; j < fyEnd; j++) {
+          const val = data.getValue(i, j);
+          if (!isNaN(val)) totalRefills += val;
+        }
+        for (let j = monthStart; j < data.getNumberOfColumns(); j++) {
+          const val = data.getValue(i, j);
+          if (!isNaN(val)) cumulativeRefills += val;
+        }
+      }
+
+      document.getElementById('kpiTiles').innerHTML = `
+        <div class="kpi-tile kpi-blue"><h2>${totalSakhis}</h2><p>Total Ujjwala Sakhis</p></div>
+        <div class="kpi-tile kpi-light"><h2>${villages.size}</h2><p>Total Villages</p></div>
+        <div class="kpi-tile kpi-dark"><h2>${districts.size}</h2><p>Total Districts</p></div>
+        <div class="kpi-tile kpi-orange"><h2>${totalRefills}</h2><p>Total Refills in FY 2024–25</p></div>
+        <div class="kpi-tile kpi-light"><h2>${cumulativeRefills}</h2><p>Cumulative Refills Till Now</p></div>`;
+    }
+
+    function drawMonthlyChart(data) {
+      const monthly = new google.visualization.DataTable();
+      monthly.addColumn('string', 'Month');
+      monthly.addColumn('number', 'Refills');
+      for (let i = 9; i < data.getNumberOfColumns(); i++) {
+        let sum = 0;
+        for (let j = 0; j < data.getNumberOfRows(); j++) {
+          const val = data.getValue(j, i);
+          if (!isNaN(val)) sum += val;
+        }
+        if (sum > 0) monthly.addRow([data.getColumnLabel(i), sum]);
+      }
+      const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(monthly, { title: 'Monthly Refill Trends', colors: ['#00bfdf'], legend: 'none' });
+    }
+
+    function drawFYDistrictChart(data) {
+      const fyStart = 17, fyEnd = 29;
+      const districtMap = {};
+      for (let i = 0; i < data.getNumberOfRows(); i++) {
+        const dist = data.getValue(i, 0);
+        let sum = 0;
+        for (let j = fyStart; j < fyEnd; j++) {
+          const val = data.getValue(i, j);
+          if (!isNaN(val)) sum += val;
+        }
+        districtMap[dist] = (districtMap[dist] || 0) + sum;
+      }
+      const chartData = new google.visualization.DataTable();
+      chartData.addColumn('string', 'District');
+      chartData.addColumn('number', 'FY Refills');
+      Object.entries(districtMap).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(d => chartData.addRow([d[0], d[1]]));
+      const chart = new google.visualization.ColumnChart(document.getElementById('fy_chart_div'));
+      chart.draw(chartData, { title: 'Top Performing Districts (FY 2024–25)', colors: ['#f79433'], legend: 'none' });
+    }
+
+    function drawTopSakhisChart(data) {
+      const fyStart = 17, fyEnd = 29;
+      const sakhiMap = {};
+      for (let i = 0; i < data.getNumberOfRows(); i++) {
+        const name = data.getValue(i, 1);
+        let sum = 0;
+        for (let j = fyStart; j < fyEnd; j++) {
+          const val = data.getValue(i, j);
+          if (!isNaN(val)) sum += val;
+        }
+        sakhiMap[name] = (sakhiMap[name] || 0) + sum;
+      }
+      const chartData = new google.visualization.DataTable();
+      chartData.addColumn('string', 'Sakhi');
+      chartData.addColumn('number', 'FY Refills');
+      Object.entries(sakhiMap).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(s => chartData.addRow([s[0], s[1]]));
+      const chart = new google.visualization.ColumnChart(document.getElementById('sakhi_chart_div'));
+      chart.draw(chartData, { title: 'Top Performing Ujjwala Sakhis (FY 2024–25)', colors: ['#f79433'], legend: 'none' });
+    }
+
+    function drawTable(data) {
+      new google.visualization.Table(document.getElementById('table_div')).draw(data, {
+        showRowNumber: false,
+        width: '100%',
+        height: 'auto',
+        cssClassNames: {
+          headerRow: 'googleHeaderRow',
+          tableRow: 'googleTableRow',
+          oddTableRow: 'googleOddTableRow',
+          headerCell: 'googleHeaderCell',
+          tableCell: 'googleTableCell'
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Ujjwala Sakhi Dashboard</h1>
+  <div class="kpi-container" id="kpiTiles"></div>
+  <div class="filters">
+    <label for="districtFilter">District:</label>
+    <select id="districtFilter"></select>
+    <label for="blockFilter">Block:</label>
+    <select id="blockFilter"></select>
+  </div>
+  <div id="chart_div"></div>
+  <div id="fy_chart_div"></div>
+  <div id="sakhi_chart_div"></div>
+  <div id="table_div"></div>
 </body>
 </html>
